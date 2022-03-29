@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('~@/assets/fonts/glacial-indifference/regular.otf');
+  font-style: normal;
+}
+
+.top-bar-label {
+  font-family: 'Playfair Display';
+  cursor: pointer;
+}
+
+/* @import url('~assets/css/swiper-bundle.min.css') */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+.pil {
+  height: 420px !important;
+  overflow: hidden;
+}
+
+.foreground-layer {
+  top: -220px;
+  height: 742px;
+}
+
+.pil-row div {
+  height: 740px;
+  /* overflow: hidden; */
+}
