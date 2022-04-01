@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */ /* eslint-disable
-@typescript-eslint/no-explicit-any */ /* eslint-disable
-@typescript-eslint/no-explicit-any */
 <template>
-  <section class="section-3 mt-32">
+  <section class="section-3 mt-32 bg-red-400">
     <div class="background-layer pil-row">
       <div class="grid grid-cols-5">
         <div class="mt-24 transform h-full pil-container grid col-span-3">
@@ -16,183 +13,153 @@
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
           adipisicing elit consectetur.
         </h3>
-        <div
-          class="glide"
-          ref="glide"
-          @mousedown="mouseDownHandler($event)"
-          @mouseup="mouseUpHandler($event, bgCode)"
-        >
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-              <div
-                :class="`glide__slide ${
-                  (clickToggle && 'clicked') || ''
-                } ${bgCode}`"
-                v-for="bgCode in 2"
-                :key="bgCode"
-              >
-                <!-- see home slide backgrounds in tailwind config file -->
-                <div
-                  :class="`bg-homeSlide${bgCode} bg-cover bg-no-repeat bg-center cursor-pointer img`"
-                ></div>
-              </div>
-            </ul>
-          </div>
-          <div
-            class="glide__arrows grid grid-cols-2 text-xl"
-            data-glide-el="controls"
-          >
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-              &lt;
-            </button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-              &gt;
-            </button>
-          </div>
-          <div
-            class="close-button hidden cursor-pointer"
-            @click="closeButtonHandler"
-            ref="slideCloseBtn"
-          >
-            [X] Close
-          </div>
-        </div>
 
-        <!-- <div class="fixed-glide hidden" ref="flixedGlide">
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-              <div
-                :class="`glide__slide ${
-                  (clickToggle && 'clicked') || ''
-                } ${bgCode}`"
-                v-for="bgCode in 2"
-                :key="bgCode"
-                @mousedown="mouseDownHandler($event)"
-                @mouseup="mouseUpHandler($event, bgCode)"
-              >
-                 see home slide backgrounds in tailwind config file
-        
-                <div
-                  :class="`bg-homeSlide${bgCode} bg-cover bg-no-repeat bg-center cursor-pointer img`"
-                ></div>
-              </div>
-            </ul>
-          </div>
+        <div>
           <div
-            class="glide__arrows grid grid-cols-2 text-xl"
-            data-glide-el="controls"
+            class="h-40 mt-14 grid grid-cols-2 text-3xl text-gray-200 hover:text-white transition-all"
           >
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-              &lt;
-            </button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-              &gt;
-            </button>
+            <div class="relative">
+              <FontAwesomeIcon
+                icon="arrow-left"
+                class="prev-arrow cursor-pointer absolute top-80 left-48 z-10"
+              />
+            </div>
+            <div class="relative">
+              <FontAwesomeIcon
+                icon="arrow-right"
+                class="next-arrow cursor-pointer absolute top-80 right-48 z-10"
+              />
+            </div>
           </div>
-          <div class="close-button hidden cursor-pointer">[X] Close</div>
-        </div> -->
+          <slick
+            ref="slick z-50"
+            :options="slickOptions"
+            class="w-9/12 mx-auto absolute -top-40 mt-14"
+          >
+            <a
+              :class="key"
+              v-for="[key, banner] of banners.entries()"
+              :key="key"
+            >
+              <!-- see home slide backgrounds in tailwind config file -->
+              <img
+                class="bg-cover bg-no-repeat bg-center cursor-pointer img z-50"
+                :src="banner.src"
+              />
+            </a>
+          </slick>
+        </div>
       </div>
     </div>
-    <div />
-    <div class="" />
   </section>
 </template>
 
 <script lang="ts">
-import Glide from '@glidejs/glide';
-import { defineComponent } from 'vue';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, defineComponent } from 'vue';
+import Slick from 'vue-slick/src/slickCarousel.vue';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default defineComponent({
+  name: 'Section3',
   setup(): Record<string, unknown> {
     return {
-      sliderData: {
-        lastClientX: null,
-        lastClientY: null,
-        noScrollEvent: true,
-        glide: null
+      banners: [
+        { src: require('/src/assets/images/pexels-ivan-samkov-5676744.jpg') },
+        { src: require('/src/assets/images/pexels-周-康-710743.jpg') },
+        { src: require('/src/assets/images/pexels-ivan-samkov-5676744.jpg') },
+        { src: require('/src/assets/images/pexels-周-康-710743.jpg') },
+        { src: require('/src/assets/images/pexels-ivan-samkov-5676744.jpg') },
+        { src: require('/src/assets/images/pexels-周-康-710743.jpg') }
+      ],
+      slickOptions: {
+        adaptiveHeight: true,
+        autoplay: true,
+        centerMode: true,
+        centerPadding: '40px',
+        accesibility: true,
+        infinite: true,
+        arrows: true,
+        dots: true,
+        pauseOnDotsHover: true,
+        respondTo: 'min',
+        prevArrow: '.prev-arrow',
+        nextArrow: '.next-arrow'
+        // variableWidth: true
+        // slidesToScroll: 3
       }
     };
   },
+  components: {
+    Slick
+  },
   methods: {
-    scrollHandler(event: Event): void {
-      event.preventDefault();
-    },
-    mouseDownHandler({
-      clientX,
-      clientY,
-      which
-    }: Record<string, unknown>): void {
-      if (which === 1) {
-        this.sliderData = {
-          ...(this.sliderData as Record<string, unknown>),
-          lastClientX: clientX,
-          lastClientY: clientY
-        };
-      }
-    },
-    mouseUpHandler({
-      clientX,
-      clientY,
-      target
-    }: Record<string, unknown>): void {
-      if (target !== this.$refs.slideCloseBtn) {
-        if (
-          clientX ===
-            (this.sliderData as Record<string, unknown>).lastClientX &&
-          clientY === (this.sliderData as Record<string, unknown>).lastClientY
-        ) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          /*(this.sliderData as any).glide = */ (
-            this.sliderData as Record<string, any>
-          ).glide.destroy();
-          (this.$refs.glide as HTMLElement).classList.add('active');
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          /*(this.sliderData as any) = */ (
-            this.sliderData as any
-          ).glide.mount();
-          if ((this.sliderData as Record<string, unknown>).noScrollEvent) {
-            (this.sliderData as Record<string, unknown>).noScrollEvent = false;
-            (this.$refs.glide as HTMLElement)?.addEventListener(
-              'mousewheel',
-              this.scrollHandler
-            );
-          }
-        }
-      }
-    },
     print(...args: unknown[]): void {
       console.log(...args);
     },
-    closeButtonHandler(): void {
-      (this.$refs.glide as HTMLElement).classList.remove('active');
-      (this.sliderData as Record<string, unknown>).noScrollEvent = true;
-      (this.$refs.glide as HTMLElement)?.removeEventListener(
-        'mousewheel',
-        this.scrollHandler
-      );
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    next() {
+      ((this as Record<string, unknown>).$refs as any).slick.next();
+    },
+    prev() {
+      (this.$refs as any).slick.prev();
+    },
+    reInit() {
+      // Helpful if you have to deal with v-for to update dynamic lists
+      this.$nextTick(() => {
+        (this.$refs as any).slick.reSlick();
+      });
+    },
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (this.sliderData as any).glide.destroy();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (this.sliderData as any).glide.mount();
+    // Events listeners
+    handleAfterChange(event: Event, slick: Component, currentSlide: unknown) {
+      console.log('handleAfterChange', event, slick, currentSlide);
+    },
+    handleBeforeChange(
+      event: Event,
+      slick: Component,
+      currentSlide: unknown,
+      nextSlide: unknown
+    ) {
+      console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);
+    },
+    handleBreakpoint(event: Event, slick: Component, breakpoint: unknown) {
+      console.log('handleBreakpoint', event, slick, breakpoint);
+    },
+    handleDestroy(event: Event, slick: Component) {
+      console.log('handleDestroy', event, slick);
+    },
+    handleEdge(event: Event, slick: Component, direction: unknown) {
+      console.log('handleEdge', event, slick, direction);
+    },
+    handleInit(event: Event, slick: Component) {
+      console.log('handleInit', event, slick);
+    },
+    handleReInit(event: Event, slick: Component) {
+      console.log('handleReInit', event, slick);
+    },
+    handleSetPosition(event: Event, slick: Component) {
+      console.log('handleSetPosition', event, slick);
+    },
+    handleSwipe(event: Event, slick: Component, direction: unknown) {
+      console.log('handleSwipe', event, slick, direction);
+    },
+    handleLazyLoaded(
+      event: Event,
+      slick: Component,
+      image: unknown,
+      imageSource: unknown
+    ) {
+      console.log('handleLazyLoaded', event, slick, image, imageSource);
+    },
+    handleLazeLoadError(
+      event: Event,
+      slick: Component,
+      image: unknown,
+      imageSource: unknown
+    ) {
+      console.log('handleLazeLoadError', event, slick, image, imageSource);
     }
-  },
-  mounted(): void {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this.sliderData as Record<string, unknown>).glide = new Glide('.glide', {
-      width: '50%',
-      type: 'carousel',
-      // autoplay: 3000,
-      keyboard: true,
-      hoverpause: true,
-      dragThreshold: 10
-    }).mount();
-
-    this.print((this.sliderData as Record<string, unknown>).glide);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this.sliderData as any).glide.mount();
   }
 });
 </script>
@@ -210,80 +177,6 @@ export default defineComponent({
 }
 
 .section-3 {
-  height: 2000px;
+  // height: px;
 }
-
-.glide__slide {
-  height: 500px;
-}
-
-.glide__slide .img {
-  height: 100%;
-}
-
-.glide {
-  width: 90%;
-  // transition-duration: 0.8s;
-  // transition-property: all;
-  // transition-timing-function: ease;
-}
-
-.glide.active {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.glide.active > .close-button {
-  color: white;
-  display: block;
-  position: absolute;
-  z-index: 9999;
-  top: 20px;
-  right: 100px;
-}
-
-.glide.active .glide__slide {
-  // transition-duration: 0.8s;
-  // transition-property: width, height, background-color;
-  // transition-timing-function: ease;
-  // width: 100% !important;
-}
-
-.glide.active,
-.glide.active .glide__slide,
-.glide.active .glide__track,
-.glide.active .glide__slides,
-.glide.active .img {
-  // width: 100% !important;
-  height: 100%;
-  margin: 0 auto;
-}
-
-.glide.active .img {
-  background-size: contain;
-  background-position: center center;
-  margin: 0 auto;
-}
-
-.glide {
-  // width: 90%;
-  background: red;
-  margin: 0 auto;
-}
-.glide.active {
-  width: 100%;
-}
-
-// .glide-container {
-//   width: 90% !important;
-//   margin: 0 auto;
-// }
-
-// .glide-container.active {
-//   width: 100% !important;
-//   //   margin: auto auto;
-// }
 </style>

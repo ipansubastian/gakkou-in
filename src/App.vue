@@ -1,16 +1,16 @@
 <template>
-  <TopBar/>
+  <TopBar />
   <router-view />
 </template>
 
 <script lang="ts">
-import TopBar from '@/components/TopBar.vue'
+import TopBar from '@/components/TopBar.vue';
+import { defineComponent } from '@vue/runtime-core';
 
-export default {
+export default defineComponent({
+  name: 'App',
   components: {
     TopBar
-  },
-};
+  }
+});
 </script>
-
-<style lang="scss"></style>
