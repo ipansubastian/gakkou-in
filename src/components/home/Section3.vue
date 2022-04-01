@@ -1,5 +1,5 @@
 <template>
-  <section class="section-3 mt-32 bg-red-400">
+  <section class="section-3 mt-32">
     <div class="background-layer pil-row">
       <div class="grid grid-cols-5">
         <div class="mt-24 transform h-full pil-container grid col-span-3">
@@ -16,7 +16,14 @@
 
         <div>
           <div
-            class="h-40 mt-14 grid grid-cols-2 text-3xl text-gray-200 hover:text-white transition-all"
+            class="
+              h-40
+              mt-14
+              grid grid-cols-2
+              text-3xl text-gray-200
+              hover:text-white
+              transition-all
+            "
           >
             <div class="relative">
               <FontAwesomeIcon
@@ -71,7 +78,7 @@ export default defineComponent({
         { src: require('/src/assets/images/pexels-ivan-samkov-5676744.jpg') },
         { src: require('/src/assets/images/pexels-周-康-710743.jpg') },
         { src: require('/src/assets/images/pexels-ivan-samkov-5676744.jpg') },
-        { src: require('/src/assets/images/pexels-周-康-710743.jpg') }
+        { src: require('/src/assets/images/pexels-周-康-710743.jpg') },
       ],
       slickOptions: {
         adaptiveHeight: true,
@@ -85,14 +92,14 @@ export default defineComponent({
         pauseOnDotsHover: true,
         respondTo: 'min',
         prevArrow: '.prev-arrow',
-        nextArrow: '.next-arrow'
+        nextArrow: '.next-arrow',
         // variableWidth: true
         // slidesToScroll: 3
-      }
+      },
     };
   },
   components: {
-    Slick
+    Slick,
   },
   methods: {
     print(...args: unknown[]): void {
@@ -159,8 +166,8 @@ export default defineComponent({
       imageSource: unknown
     ) {
       console.log('handleLazeLoadError', event, slick, image, imageSource);
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -177,6 +184,6 @@ export default defineComponent({
 }
 
 .section-3 {
-  // height: px;
+  height: 1000px;
 }
 </style>

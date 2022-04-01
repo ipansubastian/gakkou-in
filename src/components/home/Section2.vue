@@ -47,8 +47,8 @@ export default defineComponent({
     return {};
   },
   components: {
-    Hexagon
-  }
+    Hexagon,
+  },
 });
 </script>
 
