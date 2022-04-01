@@ -35,6 +35,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  name: 'Section1',
   setup(): Record<string, unknown> {
     return {};
   }

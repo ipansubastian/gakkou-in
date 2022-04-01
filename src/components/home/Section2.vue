@@ -42,6 +42,7 @@ import { defineComponent } from 'vue';
 import Hexagon from '@/components/Hexagon.vue';
 
 export default defineComponent({
+  name: 'Section2',
   setup(): Record<string, unknown> {
     return {};
   },
