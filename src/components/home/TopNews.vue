@@ -18,7 +18,7 @@
           <div
             class="
               h-40
-              mt-14
+              mt-7
               grid grid-cols-2
               text-3xl text-gray-200
               hover:text-white
@@ -69,7 +69,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export default defineComponent({
-  name: 'Section3',
+  name: 'TopNews',
   setup(): Record<string, unknown> {
     return {
       banners: [
