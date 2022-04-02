@@ -14,11 +14,11 @@
         <div class="col-start-3 border-blue-300 border-t"></div>
       </div>
     </header>
-    <main class="mt-6 h-96">
+    <main class="mt-6">
       <Slick :options="slickOptions" class="w-10/12 mx-auto">
         <Testimoni
-          :data="testimoniData"
-          v-for="[key, testimoniData] of testimoniDatas.entries()"
+          :witnessData="witnessData"
+          v-for="[key, witnessData] of witnessDatas.entries()"
           :key="key"
           class="px-2"
         />
@@ -30,17 +30,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Slick from 'vue-slick/src/slickCarousel.vue';
-import Testimoni from '@/components/home/Testimoni.vue';
+import Testimoni from '@/components/home/WitnessesCard.vue';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export default defineComponent({
-  name: 'Section4',
+  name: 'WitnessSection',
   setup(): Record<string, unknown> {
     return {
       slickOptions: {
         adaptiveHeight: true,
-        // autoplay: true,
+        autoplay: true,
         // centerPadding: '40px',
         accesibility: true,
         arrows: true,
@@ -54,7 +54,7 @@ export default defineComponent({
         // variableWidth: true
         // slidesToScroll: 3
       },
-      testimoniDatas: [
+      witnessDatas: [
         {
           name: 'Lorem Ipsum',
           body: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque eum dolorum
@@ -97,3 +97,9 @@ export default defineComponent({
   components: { Testimoni, Slick },
 });
 </script>
+
+<style lang="scss" scoped>
+main {
+  height: 480px;
+}
+</style>

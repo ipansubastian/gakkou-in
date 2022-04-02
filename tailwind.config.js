@@ -4,7 +4,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         homeSlide1: 'url("~@/assets/images/pexels-ivan-samkov-5676744.jpg")',
-        homeSlide2: 'url("~@/assets/images/pexels-周-康-710743.jpg")'
+        homeSlide2: 'url("~@/assets/images/pexels-周-康-710743.jpg")',
+        askSectionBg: 'url("~@/assets/images/get-started-bg.jpg")'
       },
       colors: {
         'sky-50': 'rgb(240 249 255)',

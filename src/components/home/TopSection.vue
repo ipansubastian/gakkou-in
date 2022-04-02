@@ -7,7 +7,15 @@
     <div class="register-section grid grid-cols-2 relative">
       <div class="grid">
         <div
-          class="w-6/12 grid justify-items-center register-box self-center justify-self-end mr-28"
+          class="
+            w-6/12
+            grid
+            justify-items-center
+            register-box
+            self-center
+            justify-self-end
+            mr-28
+          "
         >
           <p class="text-4xl text-white font-bold">
             Ingin bersekolah <br />
@@ -18,7 +26,16 @@
           </small>
           <div class="mt-4">
             <button
-              class="bg-cyan-500 hover:bg-cyan-600 transition-colors duration-100 px-7 py-1 text-white rounded-sm"
+              class="
+                bg-cyan-500
+                hover:bg-cyan-600
+                transition-colors
+                duration-100
+                px-7
+                py-1
+                text-white
+                rounded-sm
+              "
             >
               <!-- <span class="align-middle "> -->
               DAFTAR
@@ -35,10 +52,10 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Section1',
+  name: 'TopSection',
   setup(): Record<string, unknown> {
     return {};
-  }
+  },
 });
 </script>
 
